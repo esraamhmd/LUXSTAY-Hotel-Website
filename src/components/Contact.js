@@ -65,7 +65,7 @@ export default function Contact() {
                   <FaMapMarkerAlt />
                 </span>
                 <p className="text-sm text-ink/80">
-                  Lagoon Villa 12, North Malé Atoll <br /> Maldives
+                  Water Villa 12, Dharavandhoo <br /> Baa Atoll, Maldives
                 </p>
               </div>
               <div className="flex items-start gap-4 transition-transform duration-300 hover:translate-x-1">
@@ -100,7 +100,7 @@ export default function Contact() {
             </Link>
 
             <div className="mt-10">
-              <MapEmbed query="4.2117,73.5401" height="h-72" />
+              <MapEmbed query="Dharavandhoo, Baa Atoll, Maldives" zoom={13} height="h-72" />
             </div>
           </div>
 

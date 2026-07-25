@@ -4,12 +4,13 @@ import { useState } from "react";
 import { FaMapMarkedAlt } from "react-icons/fa";
 
 export default function MapEmbed({
-  query = "4.2117,73.5401", // Hulhumalé, North Malé Atoll, Maldives
+  query = "Dharavandhoo, Baa Atoll, Maldives",
+  zoom = 13,
   className = "",
   height = "h-96",
 }) {
   const [active, setActive] = useState(false);
-  const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+  const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${zoom}&output=embed`;
 
   return (
     <div

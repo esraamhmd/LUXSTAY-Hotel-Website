@@ -57,7 +57,7 @@ export default function Footer() {
             <ul className="mt-5 flex flex-col gap-4 text-sm">
               <li className="flex items-start gap-3">
                 <FaMapMarkerAlt className="mt-1 shrink-0 text-gold" />
-                <span>Lagoon Villa 12, North Malé Atoll, Maldives</span>
+                <span>Water Villa 12, Dharavandhoo, Baa Atoll, Maldives</span>
               </li>
               <li className="flex items-center gap-3">
                 <FaEnvelope className="shrink-0 text-gold" />
