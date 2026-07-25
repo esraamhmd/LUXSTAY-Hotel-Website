@@ -124,53 +124,9 @@
 | POST | `/api/contact` | Submit a general contact inquiry |
 | POST | `/api/upload` | Upload an image to Cloudinary |
 
----
-
-## 📁 Project Structure
-
-```
-lux/
-├── Dockerfile
-├── docker-compose.yml
-├── db/
-│   └── schema.sql          # Bookings, comments, contact_messages tables
-├── scripts/
-│   └── upload-images.js    # Bulk-upload local images to Cloudinary
-└── src/
-    ├── app/
-    │   ├── page.js              # Homepage
-    │   ├── rooms/               # Full room catalogue + filters
-    │   ├── booking/             # Booking form + Stripe success page
-    │   ├── restaurant/          # Restaurant & Bar detail page
-    │   ├── spa/                 # Spa & Wellness detail page
-    │   └── api/
-    │       ├── checkout/        # Stripe session + payment confirmation
-    │       ├── bookings/
-    │       ├── comments/
-    │       ├── contact/
-    │       └── upload/
-    ├── components/          # Navbar, Hero, RoomCard, Reviews, Gallery, etc.
-    ├── lib/                 # db.js, stripe.js, cloudinary.js, pricing.js, api.js
-    ├── store/               # Redux slices
-    └── data/
-        └── content.js       # Room, amenity, and static content data
-```
-
----
-
-## 🔒 Security
-
-- Environment variables (`DATABASE_URL`, `STRIPE_SECRET_KEY`, Cloudinary keys) never committed to Git
-- Stripe payment verification happens server-side only — the client never sees or trusts a "paid" flag it set itself
-- SQL queries use parameterized statements throughout — no string-concatenated queries
-- Docker image runs as a non-root user
-- `.dockerignore` and `.gitignore` keep secrets and build artifacts out of images and commits
-
----
-
 ## 📄 License
 
-This project is licensed under the MIT License — see the LICENSE file for details.
+This project is licensed under the MIT License .
 
 <div align="center">
 
