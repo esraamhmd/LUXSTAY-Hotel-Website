@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+
+  /* LuxStay brand tokens */
+  --color-ink: #12181c;        /* navbar / footer / dark sections */
+  --color-ink-2: #0a1116;      /* deepest footer band */
+  --color-gold: #c9a24a;       /* primary gold - buttons, accents */
+  --color-gold-light: #e3c583; /* lighter gold - eyebrow text, hover */
+  --color-gold-dark: #a9822f;  /* pressed / gradient edge */
+  --color-cream: #f7f6f3;      /* light section background */
+  --color-slate: #6b7280;      /* body copy on light bg */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: var(--font-jost);
+  --font-body: var(--font-inter);
+
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+  --color-cream: var(--color-cream);
+  --color-slate: var(--color-slate);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, .font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Reusable motion / interaction primitives ---------- */
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 0%;
+  background-color: var(--color-gold);
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+.btn-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: -1;
+}
+.btn-sweep:hover::before {
+  transform: scaleX(1);
+}
+.btn-sweep-light::before {
+  background-color: #ffffff;
+}
+
+.card-hover {
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -18px rgba(18, 24, 28, 0.35);
+}
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.08);
+}
+
+.icon-badge {
+  transition: background-color 0.35s ease, transform 0.35s ease;
+}
+.icon-badge:hover {
+  background-color: var(--color-gold);
+  transform: translateY(-4px);
+}
+.icon-badge:hover svg {
+  color: #ffffff !important;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fab-ring {
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+.fab-ring:hover {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  transform: translateY(-3px);
+}
+.fab-ring:hover svg {
+  color: #12181c !important;
+}
+
+.play-btn {
+  transition: transform 0.35s ease, background-color 0.35s ease;
+}
+.play-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--color-gold);
+}
+.play-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes kenburns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-1.5%, -1.5%); }
+}
+.animate-kenburns {
+  animation: kenburns 7s ease-in-out infinite alternate;
+}
+
+/* global lightweight transition so every interactive element eases, not just the ones with a bespoke class above */
+a, button, input, select, textarea, .transition-all-soft {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+button:active, a:active {
+  transform: scale(0.97);
+}
+
+/* map activation overlay */
+.map-overlay {
+  transition: opacity 0.35s ease, background-color 0.35s ease;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #12181c;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 999px; }

@@ -1,0 +1,17 @@
+# With Neon (cloud Postgres) and Cloudinary (cloud image storage), you no
+# longer need a local Postgres container — the app connects out to both
+# services directly using the credentials in your .env file.
+services:
+  luxstay:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: luxstay:latest
+    container_name: luxstay
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    restart: unless-stopped
