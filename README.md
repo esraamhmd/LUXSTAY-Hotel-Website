@@ -16,6 +16,8 @@
 
 ### A full-stack luxury hotel booking platform — browse rooms, check real-time availability, pay securely with Stripe, and manage guest reviews, all with a boutique-hotel design.
 
+🌐 **Live Demo**: [luxstay-hotel-website.vercel.app/](https://luxstay-hotel-website.vercel.app/)
+
 <br/>
 
 </div>
