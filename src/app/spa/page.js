@@ -5,9 +5,9 @@ import ExperienceDetail from "@/components/ExperienceDetail";
 import { experiences } from "@/data/content";
 
 export const metadata = {
-  title: "Spa & Wellness — LuxStay",
+  title: "Spa & Wellness - LuxStay",
   description:
-    "LuxStay's spa floor — steam, sauna, massage, and treatments built around locally-sourced ingredients.",
+    "LuxStay's spa floor - steam, sauna, massage, and treatments built around locally-sourced ingredients.",
 };
 
 export default function SpaPage() {

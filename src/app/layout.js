@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "LuxStay — The Best Hotel Deals in the World",
+  title: "LuxStay - The Best Hotel Deals in the World",
   description:
     "LuxStay is a boutique hotel booking experience: browse luxury rooms, on-site amenities, and reserve your stay in a few clicks.",
   icons: {

@@ -5,9 +5,9 @@ import ExperienceDetail from "@/components/ExperienceDetail";
 import { experiences } from "@/data/content";
 
 export const metadata = {
-  title: "The Ember Room — Restaurant & Bar — LuxStay",
+  title: "The Ember Room - Restaurant & Bar - LuxStay",
   description:
-    "A seasonal, farm-to-table restaurant and bar at LuxStay — breakfast, lunch, dinner, and a late-night bar program.",
+    "A seasonal, farm-to-table restaurant and bar at LuxStay - breakfast, lunch, dinner, and a late-night bar program.",
 };
 
 export default function RestaurantPage() {

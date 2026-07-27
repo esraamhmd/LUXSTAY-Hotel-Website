@@ -47,7 +47,7 @@ export default function Contact() {
             Questions? Send Us a Message
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-slate sm:text-base">
-            This form is for general questions — not a reservation. Already
+            This form is for general questions - not a reservation. Already
             know what you want to book?{" "}
             <Link href="/booking" className="link-underline font-semibold text-gold-dark">
               Go straight to the booking page
@@ -85,7 +85,7 @@ export default function Contact() {
                   <FaClock />
                 </span>
                 <p className="text-sm text-ink/80">
-                  Front desk &amp; concierge — open 24 hours
+                  Front desk &amp; concierge - open 24 hours
                 </p>
               </div>
             </div>

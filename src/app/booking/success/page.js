@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import BookingSuccessClient from "./BookingSuccessClient";
 
 export const metadata = {
-  title: "Booking Confirmed — LuxStay",
+  title: "Booking Confirmed - LuxStay",
 };
 
 export default function BookingSuccessPage() {

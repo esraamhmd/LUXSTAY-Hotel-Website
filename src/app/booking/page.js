@@ -5,8 +5,8 @@ import BackToTop from "@/components/BackToTop";
 import BookingPageClient from "./BookingPageClient";
 
 export const metadata = {
-  title: "Book Your Room — LuxStay",
-  description: "Reserve your LuxStay room — pick your dates, guests, and room type.",
+  title: "Book Your Room - LuxStay",
+  description: "Reserve your LuxStay room - pick your dates, guests, and room type.",
 };
 
 export default function BookingPage() {

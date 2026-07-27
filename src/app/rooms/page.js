@@ -5,7 +5,7 @@ import BackToTop from "@/components/BackToTop";
 import RoomsPageClient from "./RoomsPageClient";
 
 export const metadata = {
-  title: "Rooms — LuxStay",
+  title: "Rooms - LuxStay",
   description: "Browse all 40 LuxStay rooms across Luxury, Single, Small Suite, and Family categories.",
 };
 

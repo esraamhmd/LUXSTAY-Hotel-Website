@@ -50,7 +50,7 @@ export default function BookingSuccessClient() {
               Booking confirmed
             </h1>
             <p className="mt-2 text-sm text-slate">
-              Thanks, {state.booking.full_name.split(" ")[0]} — your{" "}
+              Thanks, {state.booking.full_name.split(" ")[0]} - your{" "}
               {state.booking.room_type} is booked for {state.booking.check_in?.slice(0, 10)}{" "}
               through {state.booking.check_out?.slice(0, 10)}. A confirmation has been sent
               to {state.booking.email}.
