@@ -6,8 +6,7 @@ import { computeTotal, nightsBetween } from "@/lib/pricing";
 
 export async function POST(request) {
   try {
-    // Fail fast with a clear message if Stripe isn't configured, instead of
-    // a confusing generic error once the SDK call itself blows up.
+   
     if (!process.env.STRIPE_SECRET_KEY) {
       console.error("POST /api/checkout: STRIPE_SECRET_KEY is not set.");
       return NextResponse.json(
@@ -60,14 +59,7 @@ export async function POST(request) {
       );
     }
 
-    // --- Reconcile stale, abandoned checkout attempts ---
-    // A "pending"/"unpaid" booking older than 30 minutes usually means the
-    // guest never finished paying. But if our own confirmation step ever
-    // failed right after a real successful payment, the booking would
-    // wrongly still show "unpaid" here — so we double-check each one
-    // against Stripe before touching it. Paid ones get corrected to
-    // confirmed; only genuinely unpaid ones get soft-cancelled (never
-    // hard-deleted, so nothing is ever silently lost).
+  
     const stale = await query(
       `SELECT id, stripe_session_id FROM bookings
        WHERE status = 'pending'
@@ -92,16 +84,12 @@ export async function POST(request) {
         }
       }
       if (!actuallyPaid) {
-        // Soft-cancel only — frees the room for the overlap check below
-        // without ever deleting the record.
+       
         await query(`UPDATE bookings SET status = 'cancelled' WHERE id = $1`, [row.id]);
       }
     }
 
-    // --- Prevent double booking ---
-    // Two date ranges [a_start, a_end) and [b_start, b_end) overlap exactly
-    // when a_start < b_end AND a_end > b_start. We only block against
-    // bookings that aren't cancelled — a cancelled booking frees the room.
+  
     const overlap = await query(
       `SELECT id FROM bookings
        WHERE room_type = $1
@@ -122,8 +110,7 @@ export async function POST(request) {
       );
     }
 
-    // Same pricing function the booking form uses to display the total —
-    // guests beyond the room's base occupancy add a per-night surcharge.
+  
     const { total, base, extraGuests, extraGuestFeeTotal } = computeTotal(
       room,
       checkIn,
@@ -132,7 +119,7 @@ export async function POST(request) {
     );
     const amountCents = Math.round(total * 100);
 
-    // Insert as unpaid/pending — becomes confirmed once Stripe confirms payment.
+    
     const inserted = await query(
       `INSERT INTO bookings (full_name, email, phone, country, check_in, check_out, guests, room_type, arrival_time, message, amount_cents, status, payment_status)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 'pending', 'unpaid')
@@ -183,11 +170,10 @@ export async function POST(request) {
         success_url: `${origin}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/booking?cancelled=1`,
         metadata: { bookingId: String(bookingId) },
-        expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // 30 minutes, matches cleanup window
+        expires_at: Math.floor(Date.now() / 1000) + 30 * 60, 
       });
     } catch (stripeErr) {
-      // Stripe failed — release the room instead of leaving a phantom
-      // "pending" booking that would block these dates forever.
+      
       await query(`DELETE FROM bookings WHERE id = $1`, [bookingId]);
       console.error("Stripe session creation failed:", stripeErr.message);
       return NextResponse.json(

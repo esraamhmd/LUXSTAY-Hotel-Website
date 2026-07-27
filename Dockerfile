@@ -25,11 +25,11 @@ ENV HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs \
   && adduser --system --uid 1001 nextjs
 
-# Next.js "standalone" output already bundles only what's needed to run
+# Next.js "standalone" 
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# db/schema.sql is read at runtime via fs, not picked up by Next's build trace — copy explicitly
+# db/schema.sql 
 COPY --from=builder --chown=nextjs:nodejs /app/db ./db
 
 USER nextjs

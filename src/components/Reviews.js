@@ -26,9 +26,7 @@ export default function Reviews() {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState(null);
 
-  // Load real guest comments from the database. If the API isn't reachable
-  // (or returns nothing yet) we keep showing the static fallback list so the
-  // section never looks empty.
+  
   useEffect(() => {
     api
       .get("/comments")
@@ -49,7 +47,7 @@ export default function Reviews() {
         }
       })
       .catch(() => {
-        /* keep static fallback on failure */
+        
       })
       .finally(() => setLoadingComments(false));
   }, []);
@@ -107,7 +105,7 @@ export default function Reviews() {
   return (
     <section id="reviews" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        {/* Featured testimonial carousel */}
+      
         <div className="rounded-lg bg-ink px-6 py-14 sm:px-12 lg:px-16">
           <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-center">
             <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full ring-2 ring-gold/40 sm:h-48 sm:w-48">
@@ -147,7 +145,7 @@ export default function Reviews() {
           </div>
         </div>
 
-        {/* Guest comments grid */}
+      
         <div className="mt-16 flex items-end justify-between gap-6">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">

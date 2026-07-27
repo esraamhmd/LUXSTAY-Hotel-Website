@@ -11,7 +11,7 @@ const initialState = {
   roomType: "Luxury A1",
   arrivalTime: "",
   message: "",
-  status: "idle", // idle | submitting | submitted | error
+  status: "idle", 
   error: null,
 };
 

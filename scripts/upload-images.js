@@ -1,12 +1,4 @@
-/**
- * Bulk-uploads every image in public/imgs/ to Cloudinary, then prints a
- * filename -> secure_url mapping you can paste into src/data/content.js.
- *
- * Usage:
- *   1. Fill in CLOUDINARY_CLOUD_NAME / CLOUDINARY_API_KEY / CLOUDINARY_API_SECRET
- *      in your .env file.
- *   2. Run:  node scripts/upload-images.js
- */
+
 require("dotenv").config();
 const fs = require("fs");
 const path = require("path");

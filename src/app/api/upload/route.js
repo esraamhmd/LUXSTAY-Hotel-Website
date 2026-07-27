@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 
-// Uploads a single image file to Cloudinary and returns its secure URL.
-// Usage from the client: POST /api/upload with multipart/form-data,
-// field name "file". Optionally pass "folder" to organize uploads,
-// e.g. "luxstay/rooms", "luxstay/gallery".
+
 export async function POST(request) {
   try {
     const formData = await request.formData();

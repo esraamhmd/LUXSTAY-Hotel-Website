@@ -57,7 +57,7 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-2">
-          {/* Info column */}
+         
           <div>
             <div className="flex flex-col gap-6">
               <div className="flex items-start gap-4 transition-transform duration-300 hover:translate-x-1">
@@ -104,7 +104,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* General inquiry form — separate from the booking form on /booking */}
+          
           <div className="rounded-lg bg-white p-7 shadow-sm sm:p-10">
             {status === "sent" ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">

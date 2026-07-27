@@ -18,7 +18,7 @@ export default function Hero() {
             Deals in the World
           </h1>
           <p className="reveal is-visible mt-6 max-w-md text-sm leading-relaxed text-white/70 sm:text-base">
-            Handpicked rooms, quiet service, and honest prices — book directly
+            Handpicked rooms, quiet service, and honest prices book directly
             with us and skip the middleman fees.
           </p>
 
@@ -34,7 +34,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Quick stats card */}
+       
         <div className="reveal is-visible hidden rounded-lg bg-white/10 p-7 backdrop-blur-md ring-1 ring-white/15 lg:block">
           <p className="text-xs uppercase tracking-widest text-gold-light">Since 2011</p>
           <p className="mt-2 font-display text-3xl font-semibold text-white">

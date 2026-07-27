@@ -1,8 +1,4 @@
--- LuxStay database schema
--- Run this once against a fresh database to create the required tables.
--- (The app also runs this automatically on first connection — see src/lib/db.js)
--- Safe to re-run: every statement is idempotent (IF NOT EXISTS), so existing
--- databases pick up new columns automatically on next deploy.
+
 
 CREATE TABLE IF NOT EXISTS bookings (
   id                SERIAL PRIMARY KEY,
@@ -16,15 +12,14 @@ CREATE TABLE IF NOT EXISTS bookings (
   room_type         TEXT NOT NULL,
   arrival_time      TEXT,
   message           TEXT,
-  status            TEXT NOT NULL DEFAULT 'pending', -- pending | confirmed | cancelled
-  amount_cents      INTEGER, -- total price charged, in cents
-  payment_status    TEXT NOT NULL DEFAULT 'unpaid', -- unpaid | paid | refunded
+  status            TEXT NOT NULL DEFAULT 'pending', 
+  amount_cents      INTEGER, 
+  payment_status    TEXT NOT NULL DEFAULT 'unpaid', 
   stripe_session_id TEXT,
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- Adds these columns automatically if you already had a bookings table from
--- before payments/double-booking were added.
+
 ALTER TABLE bookings ADD COLUMN IF NOT EXISTS amount_cents INTEGER;
 ALTER TABLE bookings ADD COLUMN IF NOT EXISTS payment_status TEXT NOT NULL DEFAULT 'unpaid';
 ALTER TABLE bookings ADD COLUMN IF NOT EXISTS stripe_session_id TEXT;

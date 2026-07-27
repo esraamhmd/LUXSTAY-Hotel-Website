@@ -16,7 +16,7 @@ export default function RoomsSection() {
       ? rooms
       : rooms.filter((r) => r.category === activeFilter);
 
-  // Homepage only previews the first 6 — full 40-room catalogue lives on /rooms
+  
   const visibleRooms = filtered.slice(0, 6);
 
   return (

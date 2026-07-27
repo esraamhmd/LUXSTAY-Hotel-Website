@@ -1,11 +1,7 @@
-// Per-night surcharge for each guest beyond a room's included base occupancy.
+
 export const EXTRA_GUEST_FEE = 30;
 
-/**
- * How many guests are included in a room's base price before the
- * per-guest surcharge kicks in. Falls back to sensible defaults by
- * category if a room doesn't specify one explicitly.
- */
+
 export function baseOccupancy(room) {
   if (!room) return 2;
   if (room.baseOccupancy) return room.baseOccupancy;
@@ -25,12 +21,7 @@ export function nightsBetween(checkIn, checkOut) {
   return diff > 0 ? Math.round(diff) : 0;
 }
 
-/**
- * Computes the full price breakdown for a stay. Used both client-side
- * (to show the guest an accurate total before they pay) and server-side
- * (to decide exactly what Stripe actually charges) — same function, same
- * numbers, guaranteed to match.
- */
+
 export function computeTotal(room, checkIn, checkOut, guests) {
   const nights = nightsBetween(checkIn, checkOut);
 

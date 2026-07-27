@@ -58,7 +58,7 @@ export const amenities = [
 
 export const roomFilters = ["All Rooms", "Luxury", "Single", "Small Suite", "Family"];
 
-// Rotating pool of hotel-room photography (Unsplash, free to use)
+
 const CLOUDINARY_BASE = "https://res.cloudinary.com/aknzol6r/image/upload";
 const room1 = `${CLOUDINARY_BASE}/v1784459661/luxstay/room-1.avif`;
 const room2 = `${CLOUDINARY_BASE}/v1784459663/luxstay/room-2.avif`;
@@ -139,7 +139,7 @@ export const testimonials = [
   },
 ];
 
-// 10 guest comments for the reviews grid
+
 export const comments = [
   { name: "Sarah Collins", rating: 5, date: "June 2026", text: "Spotless room, the bed was ridiculously comfortable, and the rooftop pool view at sunset made the whole trip." },
   { name: "Marcus Webb", rating: 5, date: "June 2026", text: "Booked the Family suite for four nights. Staff sorted a late check-out with no fuss at all. Would come back." },
@@ -167,7 +167,7 @@ export const galleryImages = [
   { src: `${CLOUDINARY_BASE}/v1784459632/luxstay/img-10.avif`, caption: "Penthouse view" },
 ];
 
-// Slideshow images used for the hero's "moving video" (Ken Burns crossfade)
+// Slideshow images 
 export const heroSlideshow = [
   `${CLOUDINARY_BASE}/v1784459623/luxstay/hero-1.avif`,
   `${CLOUDINARY_BASE}/v1784459624/luxstay/hero-2.avif`,

@@ -104,7 +104,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Book Now button (desktop) -> dedicated booking page */}
+     
         <Link
           href="/booking"
           className="btn-sweep hidden items-center gap-2 border border-gold bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wide text-ink transition-transform duration-300 lg:flex hover:text-white active:scale-95"
@@ -114,7 +114,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Mobile toggle */}
+       
         <button
           aria-label="Toggle menu"
           onClick={() => dispatch(toggleMobileMenu())}
@@ -124,7 +124,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu panel */}
+    
       <div
         className={`overflow-hidden transition-[max-height] duration-500 ease-in-out lg:hidden ${
           mobileMenuOpen ? "max-h-[640px]" : "max-h-0"
