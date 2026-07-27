@@ -18,7 +18,7 @@
 
 🌐 **Live  Website**: [luxstay-hotel-website.vercel.app/](https://luxstay-hotel-website.vercel.app/)
 <br/><br/>
-**Vedio Demo ** https://drive.google.com/file/d/19ecdH5Tvaa_iOa_zjJMEYN3suisuKmc1/view?usp=drive_link
+**video Demo ** https://drive.google.com/file/d/19ecdH5Tvaa_iOa_zjJMEYN3suisuKmc1/view?usp=drive_link
 
 
 
