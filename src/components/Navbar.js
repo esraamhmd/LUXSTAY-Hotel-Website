@@ -8,9 +8,34 @@ import {
   closeMobileMenu,
   setActiveDropdown,
 } from "@/store/uiSlice";
-import { navLinks } from "@/data/content";
 import { HiMenuAlt3, HiX, HiChevronDown } from "react-icons/hi";
 import { FaArrowRight } from "react-icons/fa";
+
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  {
+    label: "Rooms",
+    href: "/rooms",
+    dropdown: [
+      { label: "Luxury", href: "/rooms?type=Luxury" },
+      { label: "Single", href: "/rooms?type=Single" },
+      { label: "Small Suite", href: "/rooms?type=Small Suite" },
+      { label: "Family", href: "/rooms?type=Family" },
+    ],
+  },
+  {
+    label: "Experience",
+    href: "/#experience",
+    dropdown: [
+      { label: "Restaurant & Bar", href: "/restaurant" },
+      { label: "Spa & Wellness", href: "/spa" },
+      { label: "Gallery", href: "/#gallery" },
+    ],
+  },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Contact", href: "/#contact" },
+];
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -32,7 +57,7 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        {/* Logo */}
+      
         <Link href="/" className="flex items-center gap-2 shrink-0 group">
           <svg
             width="30"
@@ -54,7 +79,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop links */}
+      
         <ul className="hidden items-center gap-9 lg:flex">
           {navLinks.map((link) => (
             <li
@@ -114,7 +139,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-       
+        {/* Mobile toggle */}
         <button
           aria-label="Toggle menu"
           onClick={() => dispatch(toggleMobileMenu())}
@@ -124,7 +149,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-    
       <div
         className={`overflow-hidden transition-[max-height] duration-500 ease-in-out lg:hidden ${
           mobileMenuOpen ? "max-h-[640px]" : "max-h-0"
