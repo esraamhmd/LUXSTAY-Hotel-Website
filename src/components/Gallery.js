@@ -1,22 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OptimizedImage from "./OptimizedImage";
+import { cld } from "@/lib/cloudinaryUrl";
 import { galleryImages } from "@/data/content";
-import { FaTimes, FaChevronLeft, FaChevronRight, FaSearchPlus } from "react-icons/fa";
+import { FaTimes, FaChevronLeft, FaChevronRight, FaSearchPlus, FaSpinner } from "react-icons/fa";
+
+
+const LIGHTBOX_WIDTH = 1600;
 
 export default function Gallery() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
   const close = () => setOpenIndex(null);
   const prev = (e) => {
     e?.stopPropagation();
+    setLoaded(false);
     setOpenIndex((i) => (i - 1 + galleryImages.length) % galleryImages.length);
   };
   const next = (e) => {
     e?.stopPropagation();
+    setLoaded(false);
     setOpenIndex((i) => (i + 1) % galleryImages.length);
   };
+
+ 
+  useEffect(() => {
+    if (openIndex === null) return;
+
+    const neighbours = [
+      (openIndex - 1 + galleryImages.length) % galleryImages.length,
+      (openIndex + 1) % galleryImages.length,
+    ];
+
+    neighbours.forEach((i) => {
+      const img = new window.Image();
+      img.src = cld(galleryImages[i].src, LIGHTBOX_WIDTH);
+    });
+  }, [openIndex]);
 
   return (
     <section id="gallery" className="bg-white py-20">
@@ -34,12 +56,15 @@ export default function Gallery() {
           {galleryImages.map((img, i) => (
             <button
               key={img.src}
-              onClick={() => setOpenIndex(i)}
+              onClick={() => {
+                setLoaded(false);
+                setOpenIndex(i);
+              }}
               className="img-zoom group relative aspect-square overflow-hidden rounded-md"
             >
               <OptimizedImage
                 src={img.src}
-                width={600}
+                width={500}
                 alt={img.caption}
                 fill
                 loading="lazy"
@@ -88,18 +113,25 @@ export default function Gallery() {
             className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
+            {!loaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-ink/40">
+                <FaSpinner className="animate-spin text-2xl text-white/70" />
+              </div>
+            )}
             <OptimizedImage
+              key={galleryImages[openIndex].src}
               src={galleryImages[openIndex].src}
-              width={2000}
+              width={LIGHTBOX_WIDTH}
               alt={galleryImages[openIndex].caption}
               fill
               priority
+              onLoad={() => setLoaded(true)}
               className="object-contain"
               sizes="100vw"
             />
           </div>
           <p className="absolute bottom-6 text-sm text-white/70">
-            {galleryImages[openIndex].caption} — {openIndex + 1} / {galleryImages.length}
+            {galleryImages[openIndex].caption} -  {openIndex + 1} / {galleryImages.length}
           </p>
         </div>
       )}
