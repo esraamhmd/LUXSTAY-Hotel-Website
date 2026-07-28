@@ -72,9 +72,9 @@ const room9 = `${CLOUDINARY_BASE}/v1784459677/luxstay/room-9.avif`;
 const room10 = `${CLOUDINARY_BASE}/v1784459662/luxstay/room-10.avif`;
 
 const photoPools = {
-  Luxury: [room1, room2, room3, room4, room5, room6, room7, room8, room9, room10],
+  Luxury: [room3, room2, room1, room4, room5, room6, room7, room8, room9, room10],
   Single: [room1, room10, room2, room9, room3, room8, room4, room7, room5, room6],
-  "Small Suite": [room1, room3, room5, room7, room9, room2, room4, room6, room8, room10],
+  "Small Suite": [room9, room3, room5, room7, room1, room2, room4, room6, room8, room10],
   Family: [room2, room5, room8, room1, room9, room4, room10, room3, room7, room6],
 };
 
