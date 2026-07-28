@@ -88,21 +88,21 @@ export default function Gallery() {
           onClick={close}
         >
           <button
-            className="absolute right-6 top-6 text-2xl text-white/80 transition-colors hover:text-gold"
+            className="absolute right-6 top-6 z-20 flex h-11 w-11 items-center justify-center text-2xl text-white/80 transition-colors hover:text-gold"
             onClick={close}
             aria-label="Close"
           >
             <FaTimes />
           </button>
           <button
-            className="absolute left-4 text-3xl text-white/70 transition-colors hover:text-gold sm:left-8"
+            className="absolute left-2 z-20 flex h-14 w-14 items-center justify-center text-3xl text-white/70 transition-colors hover:text-gold sm:left-6"
             onClick={prev}
             aria-label="Previous image"
           >
             <FaChevronLeft />
           </button>
           <button
-            className="absolute right-4 text-3xl text-white/70 transition-colors hover:text-gold sm:right-8"
+            className="absolute right-2 z-20 flex h-14 w-14 items-center justify-center text-3xl text-white/70 transition-colors hover:text-gold sm:right-6"
             onClick={next}
             aria-label="Next image"
           >
@@ -110,7 +110,7 @@ export default function Gallery() {
           </button>
 
           <div
-            className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-lg"
+            className="relative z-10 aspect-video w-full max-w-4xl overflow-hidden rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
             {!loaded && (
@@ -131,7 +131,7 @@ export default function Gallery() {
             />
           </div>
           <p className="absolute bottom-6 text-sm text-white/70">
-            {galleryImages[openIndex].caption} -  {openIndex + 1} / {galleryImages.length}
+            {galleryImages[openIndex].caption} — {openIndex + 1} / {galleryImages.length}
           </p>
         </div>
       )}
