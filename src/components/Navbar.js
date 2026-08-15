@@ -151,7 +151,7 @@ export default function Navbar() {
 
       <div
         className={`overflow-hidden transition-[max-height] duration-500 ease-in-out lg:hidden ${
-          mobileMenuOpen ? "max-h-[640px]" : "max-h-0"
+          mobileMenuOpen ? "max-h-160" : "max-h-0"
         }`}
       >
         <div className="flex flex-col gap-1 border-t border-white/10 bg-ink px-5 pb-6 pt-4">

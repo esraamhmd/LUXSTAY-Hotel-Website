@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -27,20 +28,46 @@ export default function Footer() {
                 />
                 <circle cx="15" cy="9" r="1.6" fill="currentColor" />
               </svg>
+
               <span className="font-display text-lg font-semibold text-white">
                 LUX<span className="text-gold">STAY</span>
               </span>
             </div>
+
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               A boutique hotel brand built around quiet luxury and honest,
               direct pricing.
             </p>
+
             <div className="mt-6 flex gap-3">
-              {[FaFacebookF, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
+              {[
+                {
+                  Icon: FaTwitter,
+                  label: "Twitter",
+                  href: "https://twitter.com/",
+                },
+                {
+                  Icon: FaInstagram,
+                  label: "Instagram",
+                  href: "https://www.instagram.com/",
+                },
+                {
+                  Icon: FaFacebookF,
+                  label: "Facebook",
+                  href: "https://www.facebook.com/",
+                },
+                {
+                  Icon: FaYoutube,
+                  label: "YouTube",
+                  href: "https://www.youtube.com/",
+                },
+              ].map(({ Icon, label, href }) => (
                 <a
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-ink hover:-translate-y-0.5 active:scale-90"
                 >
                   <Icon className="text-xs" />
@@ -82,16 +109,15 @@ export default function Footer() {
                 { label: "Gallery", href: "/#gallery" },
                 { label: "Reviews", href: "/#reviews" },
               ].map((item) => (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      className="link-underline text-white/70 transition-colors hover:text-gold"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                )
-              )}
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="link-underline text-white/70 transition-colors hover:text-gold"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -103,10 +129,17 @@ export default function Footer() {
             Copyright © {new Date().getFullYear()}{" "}
             <span className="text-gold-light">LuxStay</span>. All rights reserved.
           </p>
+
           <div className="flex gap-5">
-            <a href="#" className="hover:text-gold transition-colors">FAQ</a>
-            <a href="#" className="hover:text-gold transition-colors">Terms of Use</a>
-            <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-gold transition-colors">
+              FAQ
+            </a>
+            <a href="#" className="hover:text-gold transition-colors">
+              Terms of Use
+            </a>
+            <a href="#" className="hover:text-gold transition-colors">
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>

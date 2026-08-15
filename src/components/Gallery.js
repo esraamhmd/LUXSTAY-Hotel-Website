@@ -131,7 +131,7 @@ export default function Gallery() {
             />
           </div>
           <p className="absolute bottom-6 text-sm text-white/70">
-            {galleryImages[openIndex].caption} — {openIndex + 1} / {galleryImages.length}
+            {galleryImages[openIndex].caption} - {openIndex + 1} / {galleryImages.length}
           </p>
         </div>
       )}
