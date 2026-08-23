@@ -1,4 +1,3 @@
-
 # 🏝️ LuxStay - Hotel Booking Platform
 
 <div align="center">
@@ -11,6 +10,7 @@
 <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
 <img src="https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white" />
 <img src="https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white" />
+<img src="https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white" />
 <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
 
 <br/><br/>
@@ -35,7 +35,7 @@ https://github.com/user-attachments/assets/1a7160e5-4e72-476b-b454-a89b7da71d31
 
 ## 📖 Introduction
 
-**LuxStay** is a complete full-stack hotel booking site built with Next.js. It delivers a real booking experience — live room catalogues, guest-count-aware pricing, Stripe checkout, double-booking protection, and a guest review system — all backed by a real Postgres database (Neon) and Cloudinary image hosting.
+**LuxStay** is a complete full-stack hotel booking site built with Next.js. It delivers a real booking experience — live room catalogues, guest-count-aware pricing, Stripe checkout, double-booking protection, automatic email confirmations, and a guest review system — all backed by a real Postgres database (Neon) and Cloudinary image hosting.
 
 | Typical Hotel Template | LuxStay |
 |--------------------------|-------|
@@ -43,6 +43,7 @@ https://github.com/user-attachments/assets/1a7160e5-4e72-476b-b454-a89b7da71d31
 | No real backend | ✅ Postgres database (Neon) with live bookings |
 | Any dates always bookable | ✅ Double-booking prevention with date-overlap checks |
 | Hardcoded room prices | ✅ Guest-count-aware pricing (extra guests add a surcharge) |
+| No booking confirmation | ✅ Automatic confirmation email via Resend once payment succeeds |
 | Fake testimonials only | ✅ Real guest review system — add a review with a photo |
 | Generic stock images | ✅ Cloudinary-hosted, auto-optimized (WebP/AVIF, right-sized) |
 | Desktop only | ✅ Fully responsive — mobile, tablet, and desktop |
@@ -64,6 +65,12 @@ https://github.com/user-attachments/assets/1a7160e5-4e72-476b-b454-a89b7da71d31
 - Real Stripe Checkout integration — hosted payment page, test and live mode supported
 - Booking is created as `pending`/`unpaid`, then confirmed as `paid` only after Stripe verifies payment
 - Failed payments automatically roll back — a room is never soft-locked by a failed charge
+
+### 📧 Email Notifications
+- Automatic booking confirmation email sent via **Resend** the moment Stripe confirms payment
+- Contact form submissions get an instant acknowledgement email
+- Sent exactly once per booking — a page refresh on the success screen never triggers a duplicate email
+- Email failures never block a booking or contact submission — they're logged and isolated from the core flow
 
 ### ⭐ Reviews & Comments
 - Guest testimonial carousel plus a live, database-backed comment feed
@@ -104,6 +111,7 @@ https://github.com/user-attachments/assets/1a7160e5-4e72-476b-b454-a89b7da71d31
 - **node-postgres (pg)** — Raw SQL queries, no ORM overhead
 - **Stripe** — Checkout Sessions for payment collection
 - **Cloudinary** — Image hosting, upload API, on-the-fly transformations
+- **Resend** — Transactional email for booking confirmations and contact acknowledgements
 
 ### Infrastructure
 - **Docker** — Multi-stage build, non-root runtime user
@@ -127,12 +135,11 @@ https://github.com/user-attachments/assets/1a7160e5-4e72-476b-b454-a89b7da71d31
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/checkout` | Validate booking, check for double-booking, create Stripe session |
-| GET  | `/api/checkout/confirm` | Verify Stripe payment, mark booking as paid/confirmed |
-| GET  | `/api/bookings` | List recent bookings |
+| GET  | `/api/checkout/confirm` | Verify Stripe payment, mark booking as paid/confirmed, send confirmation email |
 | POST | `/api/bookings` | Create a booking directly (no payment step) |
 | GET  | `/api/comments` | List guest reviews |
 | POST | `/api/comments` | Submit a new guest review, with optional image |
-| POST | `/api/contact` | Submit a general contact inquiry |
+| POST | `/api/contact` | Submit a general contact inquiry, sends an acknowledgement email |
 | POST | `/api/upload` | Upload an image to Cloudinary |
 
 ## 📄 License
