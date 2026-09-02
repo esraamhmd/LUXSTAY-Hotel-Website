@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import RoomsPageClient from "./RoomsPageClient";
+import { rooms } from "@/data/content";
+import { resolveRoomsImages } from "@/lib/cloudinaryImage";
 
 export const metadata = {
   title: "Rooms - LuxStay",
@@ -10,12 +12,13 @@ export const metadata = {
 };
 
 export default function RoomsPage() {
+  const resolvedRooms = resolveRoomsImages(rooms);
   return (
     <>
       <Navbar />
       <main className="flex-1">
-        <Suspense fallback={<div className="pt-40 pb-20 text-center text-sm text-slate">Loading rooms…</div>}>
-          <RoomsPageClient />
+        <Suspense fallback={<div className="min-h-screen bg-cream pt-36 pb-20" />}>
+          <RoomsPageClient rooms={resolvedRooms} />
         </Suspense>
       </main>
       <Footer />

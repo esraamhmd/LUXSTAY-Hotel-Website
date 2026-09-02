@@ -11,7 +11,6 @@ import {
 import { HiMenuAlt3, HiX, HiChevronDown } from "react-icons/hi";
 import { FaArrowRight } from "react-icons/fa";
 
-
 const navLinks = [
   { label: "Home", href: "/" },
   {
@@ -57,9 +56,10 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-      
-        <Link href="/" className="flex items-center gap-2 shrink-0 group">
+
+        <Link href="/" aria-label="LuxStay home" className="flex items-center gap-2 shrink-0 group">
           <svg
+            aria-hidden="true"
             width="30"
             height="30"
             viewBox="0 0 30 30"
@@ -79,15 +79,12 @@ export default function Navbar() {
           </span>
         </Link>
 
-      
         <ul className="hidden items-center gap-9 lg:flex">
           {navLinks.map((link) => (
             <li
               key={link.label}
               className="relative"
-              onMouseEnter={() =>
-                link.dropdown && dispatch(setActiveDropdown(link.label))
-              }
+              onMouseEnter={() => link.dropdown && dispatch(setActiveDropdown(link.label))}
               onMouseLeave={() => link.dropdown && dispatch(setActiveDropdown(null))}
             >
               <Link
@@ -97,6 +94,7 @@ export default function Navbar() {
                 {link.label}
                 {link.dropdown && (
                   <HiChevronDown
+                    aria-hidden="true"
                     className={`text-xs transition-transform duration-300 ${
                       activeDropdown === link.label ? "rotate-180 text-gold" : ""
                     }`}
@@ -129,23 +127,22 @@ export default function Navbar() {
           ))}
         </ul>
 
-     
         <Link
           href="/booking"
+          aria-label="Book a room at LuxStay"
           className="btn-sweep hidden items-center gap-2 border border-gold bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wide text-ink transition-transform duration-300 lg:flex hover:text-white active:scale-95"
         >
           <span className="relative z-10 flex items-center gap-2">
-            Book Now <FaArrowRight />
+            Book Now <FaArrowRight aria-hidden="true" />
           </span>
         </Link>
 
-        {/* Mobile toggle */}
         <button
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
           onClick={() => dispatch(toggleMobileMenu())}
           className="text-2xl text-white transition-transform duration-200 active:scale-90 lg:hidden"
         >
-          {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
+          {mobileMenuOpen ? <HiX aria-hidden="true" /> : <HiMenuAlt3 aria-hidden="true" />}
         </button>
       </nav>
 
@@ -182,10 +179,11 @@ export default function Navbar() {
           ))}
           <Link
             href="/booking"
+            aria-label="Book a room at LuxStay"
             onClick={() => dispatch(closeMobileMenu())}
             className="mt-3 inline-flex items-center justify-center gap-2 bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wide text-ink transition-transform active:scale-95"
           >
-            Book Now <FaArrowRight />
+            Book Now <FaArrowRight aria-hidden="true" />
           </Link>
         </div>
       </div>

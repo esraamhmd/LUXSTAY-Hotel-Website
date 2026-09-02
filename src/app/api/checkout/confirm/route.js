@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { query } from "@/lib/db";
 import stripe from "@/lib/stripe";
+import { sendBookingConfirmationEmail } from "@/lib/email";
 
 export async function GET(request) {
   try {
@@ -50,7 +51,7 @@ export async function GET(request) {
       `UPDATE bookings
        SET payment_status = 'paid', status = 'confirmed'
        WHERE id = $1 AND stripe_session_id = $2
-       RETURNING id, full_name, email, check_in, check_out, guests, room_type, status, payment_status, amount_cents`,
+       RETURNING id, full_name, email, check_in, check_out, guests, room_type, status, payment_status, amount_cents, confirmation_email_sent`,
       [bookingId, sessionId]
     );
 
@@ -65,7 +66,21 @@ export async function GET(request) {
       return NextResponse.json({ error: "Booking not found for this payment session." }, { status: 404 });
     }
 
-    return NextResponse.json({ booking: result.rows[0] });
+    const booking = result.rows[0];
+
+   
+    if (!booking.confirmation_email_sent) {
+      try {
+        await sendBookingConfirmationEmail(booking);
+        await query(`UPDATE bookings SET confirmation_email_sent = TRUE WHERE id = $1`, [booking.id]);
+        booking.confirmation_email_sent = true;
+      } catch (emailErr) {
+     
+        console.error(`Booking #${booking.id} confirmed, but confirmation email failed:`, emailErr.message);
+      }
+    }
+
+    return NextResponse.json({ booking });
   } catch (err) {
     console.error("GET /api/checkout/confirm failed:", err);
     return NextResponse.json(

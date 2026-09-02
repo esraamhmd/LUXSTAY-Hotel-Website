@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "@/store/roomsSlice";
-import { rooms, roomFilters } from "@/data/content";
+import { roomFilters } from "@/data/content";
 import RoomCard from "./RoomCard";
 import { FaArrowRight } from "react-icons/fa";
 
-export default function RoomsSection() {
+
+export default function RoomsSection({ rooms = [] }) {
   const dispatch = useDispatch();
   const activeFilter = useSelector((s) => s.rooms.activeFilter);
 
@@ -16,7 +17,6 @@ export default function RoomsSection() {
       ? rooms
       : rooms.filter((r) => r.category === activeFilter);
 
-  
   const visibleRooms = filtered.slice(0, 6);
 
   return (
@@ -61,7 +61,7 @@ export default function RoomsSection() {
             className="btn-sweep flex items-center gap-2 border border-ink px-8 py-3.5 text-sm font-semibold uppercase tracking-wide text-ink transition-transform duration-300 hover:text-white active:scale-95"
           >
             <span className="relative z-10 flex items-center gap-2">
-              View All {rooms.length} Rooms <FaArrowRight />
+              View All Rooms <FaArrowRight />
             </span>
           </Link>
         </div>
@@ -69,81 +69,3 @@ export default function RoomsSection() {
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

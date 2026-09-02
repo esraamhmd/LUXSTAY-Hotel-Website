@@ -1,14 +1,15 @@
 import OptimizedImage from "./OptimizedImage";
 import Link from "next/link";
-import { experiences } from "@/data/content";
 import { FaArrowRight } from "react-icons/fa";
 
-const items = [
-  { ...experiences.restaurant, reverse: false },
-  { ...experiences.spa, reverse: true },
-];
+export default function Experience({ experiences }) {
+  if (!experiences) return null;
 
-export default function Experience() {
+  const items = [
+    { ...experiences.restaurant, reverse: false },
+    { ...experiences.spa, reverse: true },
+  ];
+
   return (
     <section id="experience" className="bg-white py-20">
       <div className="mx-auto flex max-w-7xl flex-col gap-20 px-5 lg:px-8">
@@ -21,12 +22,13 @@ export default function Experience() {
           >
             <Link
               href={`/${item.slug}`}
-              className="img-zoom relative block h-72 w-full overflow-hidden rounded-lg sm:h-96 lg:h-[26rem]"
+              aria-label={`View ${item.title}`}
+              className="img-zoom relative block h-72 w-full overflow-hidden rounded-lg sm:h-96 lg:h-104"
             >
               <OptimizedImage
                 src={item.heroImage}
                 width={1100}
-                alt={item.title}
+                alt=""
                 fill
                 loading="lazy"
                 className="object-cover"
@@ -49,7 +51,7 @@ export default function Experience() {
                 className="btn-sweep mt-7 inline-flex items-center gap-2 border border-gold px-6 py-3 text-sm font-semibold uppercase tracking-wide text-gold-dark transition-transform duration-300 hover:text-white active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Read More <FaArrowRight />
+                  Explore {item.title} <FaArrowRight aria-hidden="true" />
                 </span>
               </Link>
             </div>

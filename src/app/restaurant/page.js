@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import ExperienceDetail from "@/components/ExperienceDetail";
 import { experiences } from "@/data/content";
+import { resolveExperiences } from "@/lib/cloudinaryImage";
 
 export const metadata = {
   title: "The Ember Room - Restaurant & Bar - LuxStay",
@@ -11,11 +12,12 @@ export const metadata = {
 };
 
 export default function RestaurantPage() {
+  const resolved = resolveExperiences(experiences);
   return (
     <>
       <Navbar />
       <main className="flex-1">
-        <ExperienceDetail data={experiences.restaurant} />
+        <ExperienceDetail data={resolved.restaurant} />
       </main>
       <Footer />
       <BackToTop />

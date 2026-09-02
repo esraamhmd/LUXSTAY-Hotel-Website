@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import ExperienceDetail from "@/components/ExperienceDetail";
 import { experiences } from "@/data/content";
+import { resolveExperiences } from "@/lib/cloudinaryImage";
 
 export const metadata = {
   title: "Spa & Wellness - LuxStay",
@@ -11,11 +12,12 @@ export const metadata = {
 };
 
 export default function SpaPage() {
+  const resolved = resolveExperiences(experiences);
   return (
     <>
       <Navbar />
       <main className="flex-1">
-        <ExperienceDetail data={experiences.spa} />
+        <ExperienceDetail data={resolved.spa} />
       </main>
       <Footer />
       <BackToTop />

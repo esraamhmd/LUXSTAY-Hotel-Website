@@ -28,7 +28,7 @@ export default function MapEmbed({
         style={{ pointerEvents: active ? "auto" : "none" }}
       />
 
-      {/* Overlay: blocks accidental scroll-jacking until the user hovers/clicks to engage */}
+    
       <div
         className={`map-overlay pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/40 ${
           active ? "opacity-0" : "opacity-100"

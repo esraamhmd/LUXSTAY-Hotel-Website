@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS comments (
 );
 
 ALTER TABLE comments ADD COLUMN IF NOT EXISTS image_url TEXT;
+ALTER TABLE bookings ADD COLUMN IF NOT EXISTS confirmation_email_sent BOOLEAN NOT NULL DEFAULT FALSE;
+ 
 
 CREATE INDEX IF NOT EXISTS idx_bookings_email ON bookings (email);
 CREATE INDEX IF NOT EXISTS idx_bookings_created_at ON bookings (created_at DESC);

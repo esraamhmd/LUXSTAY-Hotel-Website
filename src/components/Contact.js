@@ -16,7 +16,7 @@ import {
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | submitting | sent | error
+  const [status, setStatus] = useState("idle"); 
   const [error, setError] = useState(null);
 
   const handleChange = (field) => (e) =>

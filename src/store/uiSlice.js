@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mobileMenuOpen: false,
-  activeDropdown: null, // "pages" | "room" | null (desktop nav dropdowns)
+  activeDropdown: null, 
 };
 
 const uiSlice = createSlice({

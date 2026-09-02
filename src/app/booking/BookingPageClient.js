@@ -10,7 +10,6 @@ import {
   submitBookingError,
   resetBooking,
 } from "@/store/bookingSlice";
-import { rooms } from "@/data/content";
 import { computeTotal } from "@/lib/pricing";
 import OptimizedImage from "@/components/OptimizedImage";
 import api from "@/lib/api";
@@ -35,7 +34,7 @@ const ARRIVAL_TIMES = [
   "6:00 PM – 9:00 PM", "After 9:00 PM (late arrival)",
 ];
 
-export default function BookingPageClient() {
+export default function BookingPageClient({ rooms = [] }) {
   const dispatch = useDispatch();
   const booking = useSelector((s) => s.booking);
   const searchParams = useSearchParams();
@@ -59,6 +58,17 @@ export default function BookingPageClient() {
   const handleChange = (field) => (e) =>
     dispatch(updateField({ field, value: e.target.value }));
 
+  const handlePhoneChange = (e) => {
+    const val = e.target.value.replace(/[^0-9+\s()]/g, "");
+    dispatch(updateField({ field: "phone", value: val }));
+  };
+
+  const handleGuestsChange = (e) => {
+    const val = Number(e.target.value);
+    if (val < 1) return;
+    dispatch(updateField({ field: "guests", value: String(val) }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(submitBookingStart());
@@ -75,7 +85,6 @@ export default function BookingPageClient() {
         arrivalTime: booking.arrivalTime || null,
         message: booking.message || null,
       });
-      // Redirect to Stripe's hosted checkout page to collect payment.
       window.location.href = res.data.url;
     } catch (err) {
       dispatch(submitBookingError(err.response?.data?.error || "Something went wrong."));
@@ -95,7 +104,7 @@ export default function BookingPageClient() {
         </div>
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.3fr]">
-          {/* Room summary card */}
+
           <div className="h-fit overflow-hidden rounded-lg bg-white shadow-sm">
             <div className="img-zoom relative h-56 w-full">
               <OptimizedImage
@@ -151,7 +160,6 @@ export default function BookingPageClient() {
             </div>
           </div>
 
-          {/* Form */}
           <div className="rounded-lg bg-white p-7 shadow-sm sm:p-10">
             {booking.status === "submitted" ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -211,7 +219,7 @@ export default function BookingPageClient() {
                       type="tel"
                       required
                       value={booking.phone}
-                      onChange={handleChange("phone")}
+                      onChange={handlePhoneChange}
                       placeholder="+1 555 123 4567"
                       className="rounded border border-black/10 px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-gold"
                     />
@@ -263,11 +271,16 @@ export default function BookingPageClient() {
                       min="1"
                       max={selectedRoom.guests}
                       value={booking.guests}
-                      onChange={handleChange("guests")}
+                      onChange={handleGuestsChange}
+                      onKeyDown={(e) => {
+                        if (e.key === "-" || e.key === "e" || e.key === "+") {
+                          e.preventDefault();
+                        }
+                      }}
                       className="rounded border border-black/10 px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-gold"
                     />
                     <span className="text-xs text-slate">
-                      Max {selectedRoom.guests} for this room — extra guests add $30/night each
+                      Max {selectedRoom.guests} for this room - extra guests add $30/night each
                     </span>
                   </label>
                   <label className="flex flex-col gap-2 text-sm text-ink/70">

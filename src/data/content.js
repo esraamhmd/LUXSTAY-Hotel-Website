@@ -59,17 +59,16 @@ export const amenities = [
 export const roomFilters = ["All Rooms", "Luxury", "Single", "Small Suite", "Family"];
 
 
-const CLOUDINARY_BASE = "https://res.cloudinary.com/aknzol6r/image/upload";
-const room1 = `${CLOUDINARY_BASE}/v1784459661/luxstay/room-1.avif`;
-const room2 = `${CLOUDINARY_BASE}/v1784459663/luxstay/room-2.avif`;
-const room3 = `${CLOUDINARY_BASE}/v1784459663/luxstay/room-3.avif`;
-const room4 = `${CLOUDINARY_BASE}/v1784459666/luxstay/room-4.jpg`;
-const room5 = `${CLOUDINARY_BASE}/v1784459668/luxstay/room-5.avif`;
-const room6 = `${CLOUDINARY_BASE}/v1784459672/luxstay/room-6.jpg`;
-const room7 = `${CLOUDINARY_BASE}/v1784459647/luxstay/oom-7.avif`;
-const room8 = `${CLOUDINARY_BASE}/v1784459675/luxstay/room-8.avif`;
-const room9 = `${CLOUDINARY_BASE}/v1784459677/luxstay/room-9.avif`;
-const room10 = `${CLOUDINARY_BASE}/v1784459662/luxstay/room-10.avif`;
+const room1 = "v1784459661/luxstay/room-1.avif";
+const room2 = "v1784459663/luxstay/room-2.avif";
+const room3 = "v1784459663/luxstay/room-3.avif";
+const room4 = "v1784459666/luxstay/room-4.jpg";
+const room5 = "v1784459668/luxstay/room-5.avif";
+const room6 = "v1784459672/luxstay/room-6.jpg";
+const room7 = "v1784459647/luxstay/room-7.avif";
+const room8 = "v1784459675/luxstay/room-8.avif";
+const room9 = "v1784459677/luxstay/room-9.avif";
+const room10 = "v1784459662/luxstay/room-10.avif";
 
 const photoPools = {
   Luxury: [room3, room2, room1, room4, room5, room6, room7, room8, room9, room10],
@@ -121,24 +120,23 @@ export const testimonials = [
     role: "Travel Blogger",
     quote:
       "Every detail felt considered, from the quiet hallways to the staff remembering my name by day two. It's the calmest luxury stay I've had in years.",
-    image: `${CLOUDINARY_BASE}/v1784459620/luxstay/co-1.avif`,
+    image: "v1784459620/luxstay/co-1.avif",
   },
   {
     name: "Daniel Reyes",
     role: "Architect",
     quote:
       "The room design alone is worth the trip. Clean lines, warm light, and a view that changes the whole mood of the evening.",
-    image: `${CLOUDINARY_BASE}/v1784459621/luxstay/co-2.avif`,
+    image: "v1784459621/luxstay/co-2.avif",
   },
   {
     name: "Priya Nair",
     role: "Marketing Director",
     quote:
       "I booked for a work trip and stayed an extra night just for the rooftop pool. The concierge team planned my whole weekend.",
-    image: `${CLOUDINARY_BASE}/v1784459622/luxstay/co-3.avif`,
+    image: "v1784459622/luxstay/co-3.avif",
   },
 ];
-
 
 export const comments = [
   { name: "Sarah Collins", rating: 5, date: "June 2026", text: "Spotless room, the bed was ridiculously comfortable, and the rooftop pool view at sunset made the whole trip." },
@@ -153,37 +151,34 @@ export const comments = [
   { name: "Ryan Coleman", rating: 5, date: "February 2026", text: "Booked online in minutes, confirmation came within the hour, check-in was seamless." },
 ];
 
-// 10 gallery photos
 export const galleryImages = [
-  { src: `${CLOUDINARY_BASE}/v1784459631/luxstay/img-1.avif`, caption: "Lobby lounge" },
-  { src: `${CLOUDINARY_BASE}/v1784459633/luxstay/img-2.avif`, caption: "Deluxe bedroom" },
-  { src: `${CLOUDINARY_BASE}/v1784459634/luxstay/img-3.avif`, caption: "Rooftop pool" },
-  { src: `${CLOUDINARY_BASE}/v1784459635/luxstay/img-4.avif`, caption: "Suite bathroom" },
-  { src: `${CLOUDINARY_BASE}/v1784459637/luxstay/img-5.avif`, caption: "Guest bedroom" },
-  { src: `${CLOUDINARY_BASE}/v1784459637/luxstay/img-6.avif`, caption: "Family suite" },
-  { src: `${CLOUDINARY_BASE}/v1784459638/luxstay/img-7.avif`, caption: "The Ember Room" },
-  { src: `${CLOUDINARY_BASE}/v1784459644/luxstay/img-8.jpg`, caption: "Spa & wellness" },
-  { src: `${CLOUDINARY_BASE}/v1784459645/luxstay/img-9.avif`, caption: "Suite at dusk" },
-  { src: `${CLOUDINARY_BASE}/v1784459632/luxstay/img-10.avif`, caption: "Penthouse view" },
+  { src: "v1784459631/luxstay/img-1.avif", caption: "Lobby lounge" },
+  { src: "v1784459633/luxstay/img-2.avif", caption: "Deluxe bedroom" },
+  { src: "v1784459634/luxstay/img-3.avif", caption: "Rooftop pool" },
+  { src: "v1784459635/luxstay/img-4.avif", caption: "Suite bathroom" },
+  { src: "v1784459637/luxstay/img-5.avif", caption: "Guest bedroom" },
+  { src: "v1784459637/luxstay/img-6.avif", caption: "Family suite" },
+  { src: "v1784459638/luxstay/img-7.avif", caption: "The Ember Room" },
+  { src: "v1784459644/luxstay/img-8.jpg", caption: "Spa & wellness" },
+  { src: "v1784459645/luxstay/img-9.avif", caption: "Suite at dusk" },
+  { src: "v1784459632/luxstay/img-10.avif", caption: "Penthouse view" },
 ];
 
-// Slideshow images 
 export const heroSlideshow = [
-  `${CLOUDINARY_BASE}/v1784459623/luxstay/hero-1.avif`,
-  `${CLOUDINARY_BASE}/v1784459624/luxstay/hero-2.avif`,
-  `${CLOUDINARY_BASE}/v1784459626/luxstay/hero-3.avif`,
-  `${CLOUDINARY_BASE}/v1784459629/luxstay/hero-4.avif`,
-  `${CLOUDINARY_BASE}/v1784459630/luxstay/hero-5.avif`,
+  "v1784459623/luxstay/hero-1.avif",
+  "v1784459624/luxstay/hero-2.avif",
+  "v1784459626/luxstay/hero-3.avif",
+  "v1784459629/luxstay/hero-4.avif",
+  "v1784459630/luxstay/hero-5.avif",
 ];
 
-// Full detail for the two Experience pages (Restaurant & Bar, Spa & Wellness)
 export const experiences = {
   restaurant: {
     slug: "restaurant",
     eyebrow: "Our Food",
     title: "The Ember Room",
     tagline: "A seasonal, farm-to-table restaurant and bar",
-    heroImage: `${CLOUDINARY_BASE}/v1784459660/luxstay/rest.jpg`,
+    heroImage: "v1784459660/luxstay/rest.jpg",
     description:
       "A seasonal, farm-to-table menu served in a dining room built for long, unhurried evenings. Breakfast, lunch, and a tasting menu after dark, with a bar program built around small producers and slow-poured cocktails.",
     hours: [
@@ -201,10 +196,10 @@ export const experiences = {
       "Full vegetarian and gluten-free menus",
     ],
     gallery: [
-     `${CLOUDINARY_BASE}/v1784459648/luxstay/rest-1.webp`,
-     `${CLOUDINARY_BASE}/v1784459648/luxstay/rest-2.webp`,
-     `${CLOUDINARY_BASE}/v1784459649/luxstay/rest-3.webp`,
-     `${CLOUDINARY_BASE}/v1784459650/luxstay/rest-4.webp`,
+      "v1784459648/luxstay/rest-1.webp",
+      "v1784459648/luxstay/rest-2.webp",
+      "v1784459649/luxstay/rest-3.webp",
+      "v1784459650/luxstay/rest-4.webp",
     ],
   },
   spa: {
@@ -212,9 +207,9 @@ export const experiences = {
     eyebrow: "Wind Down",
     title: "Spa & Wellness",
     tagline: "Steam, sauna, and treatments built around local ingredients",
-    heroImage: `${CLOUDINARY_BASE}/v1784459687/luxstay/spa-4.jpg`,
+    heroImage: "v1784459687/luxstay/spa-4.jpg",
     description:
-      "A quiet, low-lit floor built for slowing down — steam room, dry sauna, and a treatment menu using ingredients sourced from growers within a short drive of the property. Book a slot at check-in or reserve ahead for your whole stay.",
+      "A quiet, low-lit floor built for slowing down - steam room, dry sauna, and a treatment menu using ingredients sourced from growers within a short drive of the property. Book a slot at check-in or reserve ahead for your whole stay.",
     hours: [
       { label: "Spa Floor", time: "8:00 AM – 9:00 PM" },
       { label: "Treatments", time: "9:00 AM – 8:00 PM (by appointment)" },
@@ -229,10 +224,10 @@ export const experiences = {
       "Robes, slippers, and herbal tea included",
     ],
     gallery: [
-      `${CLOUDINARY_BASE}/v1784459681/luxstay/spa-1.jpg`,
-      `${CLOUDINARY_BASE}/v1784459682/luxstay/spa-2.avif`,
-      `${CLOUDINARY_BASE}/v1784459683/luxstay/spa-3.avif`,
-      `${CLOUDINARY_BASE}/v1784459687/luxstay/spa-4.jpg`,
+      "v1784459681/luxstay/spa-1.jpg",
+      "v1784459682/luxstay/spa-2.avif",
+      "v1784459683/luxstay/spa-3.avif",
+      "v1784459687/luxstay/spa-4.jpg",
     ],
   },
 };

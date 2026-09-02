@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import OptimizedImage from "./OptimizedImage";
 import api from "@/lib/api";
-import { testimonials, comments as fallbackComments } from "@/data/content";
+import { comments as fallbackComments } from "@/data/content";
 import {
   FaQuoteLeft,
   FaStar,
@@ -13,7 +13,7 @@ import {
   FaImage,
 } from "react-icons/fa";
 
-export default function Reviews() {
+export default function Reviews({ testimonials = [] }) {
   const [active, setActive] = useState(0);
   const t = testimonials[active];
 
@@ -26,7 +26,6 @@ export default function Reviews() {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState(null);
 
-  
   useEffect(() => {
     api
       .get("/comments")
@@ -46,9 +45,7 @@ export default function Reviews() {
           );
         }
       })
-      .catch(() => {
-        
-      })
+      .catch(() => {})
       .finally(() => setLoadingComments(false));
   }, []);
 
@@ -102,17 +99,18 @@ export default function Reviews() {
     }
   };
 
+  if (!t) return null;
+
   return (
     <section id="reviews" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-      
         <div className="rounded-lg bg-ink px-6 py-14 sm:px-12 lg:px-16">
           <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-center">
             <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full ring-2 ring-gold/40 sm:h-48 sm:w-48">
               <OptimizedImage
                 src={t.image}
                 width={350}
-                alt={t.name}
+                alt={`Portrait of ${t.name}`}
                 fill
                 loading="lazy"
                 className="object-cover"
@@ -120,7 +118,7 @@ export default function Reviews() {
             </div>
 
             <div className="text-center lg:text-left">
-              <FaQuoteLeft className="mx-auto mb-4 text-2xl text-gold/60 lg:mx-0" />
+              <FaQuoteLeft className="mx-auto mb-4 text-2xl text-gold/60 lg:mx-0" aria-hidden="true" />
               <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
                 {t.quote}
               </p>
@@ -135,17 +133,21 @@ export default function Reviews() {
                     key={i}
                     aria-label={`Show testimonial ${i + 1}`}
                     onClick={() => setActive(i)}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
-                      i === active ? "w-7 bg-gold" : "w-2.5 bg-white/25 hover:bg-white/50"
-                    }`}
-                  />
+                    style={{ minWidth: "44px", minHeight: "44px" }}
+                    className="flex items-center justify-center"
+                  >
+                    <span
+                      className={`block h-2.5 rounded-full transition-all duration-300 ${
+                        i === active ? "w-7 bg-gold" : "w-2.5 bg-white/25 hover:bg-white/50"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </div>
           </div>
         </div>
 
-      
         <div className="mt-16 flex items-end justify-between gap-6">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">
@@ -160,7 +162,7 @@ export default function Reviews() {
             className="btn-sweep flex shrink-0 items-center gap-2 border border-gold bg-gold px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-ink transition-transform duration-300 hover:text-white active:scale-95"
           >
             <span className="relative z-10 flex items-center gap-2">
-              {formOpen ? <FaTimes /> : <FaPlus />}
+              {formOpen ? <FaTimes aria-hidden="true" /> : <FaPlus aria-hidden="true" />}
               {formOpen ? "Cancel" : "Add a Review"}
             </span>
           </button>
@@ -218,7 +220,7 @@ export default function Reviews() {
 
             <label className="flex items-center gap-3 text-sm text-ink/70">
               <span className="flex items-center gap-2 rounded border border-dashed border-black/20 px-4 py-2.5 transition-colors hover:border-gold">
-                <FaImage className="text-gold-dark" />
+                <FaImage className="text-gold-dark" aria-hidden="true" />
                 {imageFile ? imageFile.name : "Attach a photo (optional)"}
               </span>
               <input
@@ -235,7 +237,7 @@ export default function Reviews() {
               className="btn-sweep mt-2 flex items-center justify-center gap-2 border border-gold bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-ink transition-transform duration-300 hover:text-white active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <span className="relative z-10 flex items-center gap-2">
-                {submitting && <FaSpinner className="animate-spin" />}
+                {submitting && <FaSpinner className="animate-spin" aria-hidden="true" />}
                 {submitting ? "Posting…" : "Post Review"}
               </span>
             </button>
@@ -253,7 +255,7 @@ export default function Reviews() {
                   <OptimizedImage
                     src={c.image}
                     width={500}
-                    alt={`Photo from ${c.name}'s review`}
+                    alt=""
                     fill
                     loading="lazy"
                     className="object-cover"
@@ -261,8 +263,9 @@ export default function Reviews() {
                 </div>
               )}
               <div className="flex flex-1 flex-col p-6">
-                <FaQuoteLeft className="mb-3 text-lg text-gold/50" />
-                <div className="mb-2 flex gap-0.5">
+                <FaQuoteLeft className="mb-3 text-lg text-gold/50" aria-hidden="true" />
+                <p className="sr-only">{c.rating} out of 5 stars</p>
+                <div className="mb-2 flex gap-0.5" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <FaStar
                       key={s}
